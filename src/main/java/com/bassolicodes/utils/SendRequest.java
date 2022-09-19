@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SendRequest {
 
@@ -22,7 +23,7 @@ public class SendRequest {
         try (okhttp3.Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
-            String body = response.body().string();
+            String body = Objects.requireNonNull(response.body()).string();
 
             System.out.println(body);
         } catch (IOException exception) {
@@ -44,7 +45,7 @@ public class SendRequest {
         try (okhttp3.Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
 
-            String body = response.body().string();
+            String body = Objects.requireNonNull(response.body()).string();
 
             System.out.println(body);
         } catch (IOException exception) {
